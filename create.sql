@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS staff(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL,
     sortcode mediumint NOT NULL,
-    account_number int);
+    account_number int NOT NULL,
+    job_title varchar(20) NOT NULL,
+    wage mediumint NOT NULL);
 CREATE TABLE IF NOT EXISTS distributor(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL);
@@ -27,6 +29,7 @@ CREATE TABLE IF NOT EXISTS customer(
 CREATE TABLE IF NOT EXISTS basket(
     productID int,
     customerID int,
+    quantity smallint NOT NULL,
     PRIMARY KEY (productID, customerID),
     FOREIGN KEY (productID) REFERENCES product(id),
     FOREIGN KEY (customerID) REFERENCES customer(id));
