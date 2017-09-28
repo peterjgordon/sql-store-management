@@ -3,8 +3,8 @@ USE amazonia;
 CREATE TABLE IF NOT EXISTS staff(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL,
-    sortcode mediumint NOT NULL,
-    account_number int NOT NULL,
+    sortcode varchar(6) NOT NULL,
+    account_number varchar(8) NOT NULL,
     job_title varchar(20) NOT NULL,
     wage mediumint NOT NULL);
 CREATE TABLE IF NOT EXISTS distributor(
