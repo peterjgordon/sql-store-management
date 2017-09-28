@@ -8,21 +8,14 @@ CREATE TABLE IF NOT EXISTS staff(
 CREATE TABLE IF NOT EXISTS distributor(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL);
-CREATE TABLE IF NOT EXISTS product_distributor(
-    productID int,
-    distributorID int,
-    PRIMARY KEY(productID, distributorID),
-    FOREIGN KEY (productID) REFERENCES product(id),
-    FOREIGN KEY (distributorID) REFERENCES distributor(id));
 CREATE TABLE IF NOT EXISTS product(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL);
-CREATE TABLE IF NOT EXISTS basket(
-    productID int,
-    customerID int,
-    PRIMARY KEY (productID, customerID),
-    FOREIGN KEY (productID) REFERENCES product(id),
-    FOREIGN KEY (customerID) REFERENCES customer(id));
+CREATE TABLE IF NOT EXISTS address(
+    postcode varchar(8) NOT NULL PRIMARY KEY,
+    town varchar(20) NOT NULL,
+    county varchar(20) NOT NULL,
+    country varchar(20) NOT NULL);
 CREATE TABLE IF NOT EXISTS customer(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(20) NOT NULL,
@@ -31,8 +24,15 @@ CREATE TABLE IF NOT EXISTS customer(
     card_number bigint NOT NULL,
     phone_number varchar(16) NOT NULL,
     FOREIGN KEY (postcode) REFERENCES address(postcode));
-CREATE TABLE IF NOT EXISTS address(
-    postcode varchar(8) NOT NULL,
-    town varchar(20) NOT NULL,
-    county varchar(20) NOT NULL,
-    country varchar(20) NOT NULL);
+CREATE TABLE IF NOT EXISTS basket(
+    productID int,
+    customerID int,
+    PRIMARY KEY (productID, customerID),
+    FOREIGN KEY (productID) REFERENCES product(id),
+    FOREIGN KEY (customerID) REFERENCES customer(id));
+CREATE TABLE IF NOT EXISTS product_distributor(
+    productID int,
+    distributorID int,
+    PRIMARY KEY(productID, distributorID),
+    FOREIGN KEY (productID) REFERENCES product(id),
+    FOREIGN KEY (distributorID) REFERENCES distributor(id));
